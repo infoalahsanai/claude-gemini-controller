@@ -1,0 +1,254 @@
+/* Claude-Gemini Custom Injector Styles */
+
+/* Floating Widget Badge */
+#clg-floating-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+}
+
+.clg-badge {
+  background: linear-gradient(135deg, #da7756 0%, #c65d3b 100%);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(218, 119, 86, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.clg-badge:hover, .clg-badge:active {
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(218, 119, 86, 0.6);
+}
+
+.clg-panel {
+  display: none;
+  width: 320px;
+  max-width: 90vw;
+  background: #1c1a17;
+  border: 1px solid #332f2a;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  color: #f5f3ef;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clg-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #332f2a;
+  padding-bottom: 8px;
+}
+
+.clg-panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #da7756;
+}
+
+.clg-panel-close {
+  background: none;
+  border: none;
+  color: #a6a095;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.clg-panel-body {
+  font-size: 12px;
+  color: #d1ccbf;
+  line-height: 1.5;
+}
+
+.clg-quick-btn {
+  background: #2b2824;
+  color: #f5f3ef;
+  border: 1px solid #332f2a;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.clg-quick-btn:hover {
+  background: #38342f;
+}
+
+/* Injected Custom Send Button in Claude input */
+.clg-send-btn {
+  background: #da7756 !important;
+  color: white !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: opacity 0.2s, transform 0.1s !important;
+  z-index: 100 !important;
+  margin-left: 6px !important;
+}
+
+.clg-send-btn:hover {
+  opacity: 0.9 !important;
+}
+
+.clg-send-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* Injected Chat Bubbles */
+.clg-chat-user {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.clg-chat-user-bubble {
+  background: #2d2925;
+  color: #f5f3ef;
+  border-radius: 14px;
+  border-bottom-right-radius: 2px;
+  padding: 12px 16px;
+  max-width: 85%;
+  font-size: 15px;
+  line-height: 1.5;
+  border: 1px solid #3d3832;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.clg-chat-bot {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+  width: 100%;
+  animation: clgFadeIn 0.3s ease;
+}
+
+.clg-chat-bot-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.clg-chat-bot-avatar {
+  width: 24px;
+  height: 24px;
+  background: #da7756;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.clg-chat-bot-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #da7756;
+}
+
+.clg-chat-bot-tag {
+  font-size: 10px;
+  background: rgba(218, 119, 86, 0.2);
+  color: #da7756;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.clg-chat-bot-content {
+  background: transparent;
+  color: #f5f3ef;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.clg-chat-bot-content pre {
+  background: #11100e;
+  border: 1px solid #332f2a;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.clg-chat-bot-content code {
+  background: #25221e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.clg-chat-bot-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.clg-chat-bot-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.clg-copy-btn {
+  background: #2b2824;
+  color: #a6a095;
+  border: 1px solid #38342f;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.clg-copy-btn:hover {
+  color: #ffffff;
+}
+
+@keyframes clgFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.clg-pulse {
+  display: inline-block;
+  animation: clgPulse 1.5s infinite;
+}
+
+@keyframes clgPulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
