@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude AI - Gemini Controller</title>
+  <style>
+    :root {
+      --bg: #131211;
+      --card-bg: #1c1a17;
+      --border: #332f2a;
+      --accent: #da7756;
+      --accent-hover: #e0886b;
+      --text: #f5f3ef;
+      --text-dim: #a6a095;
+      --success: #22c55e;
+      --error: #ef4444;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      width: 340px;
+      padding: 16px;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header img {
+      width: 32px;
+      height: 32px;
+    }
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .header p {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    label {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 9px 12px;
+      background: #0d0c0b;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: var(--accent);
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+    .btn-secondary {
+      background: #2b2824;
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: #38342f;
+    }
+    .switch-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+    .switch-label {
+      font-size: 13px;
+      color: var(--text);
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #38342f;
+      transition: .3s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    .status-badge {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: none;
+      text-align: center;
+    }
+    .status-badge.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+    .status-badge.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+    .help-text {
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.4;
+      background: #0d0c0b;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icons/icon48.png" alt="Logo">
+    <div>
+      <h1>Claude Controller</h1>
+      <p>Powered by Google Gemini Free Key</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <label for="apiKey">Google Gemini API Key</label>
+    <input type="password" id="apiKey" placeholder="AIzaSy..." autocomplete="off">
+    
+    <label for="modelSelect">Gemini Model</label>
+    <select id="modelSelect">
+      <option value="gemini-1.5-flash">Gemini 1.5 Flash (Super Fast & Free)</option>
+      <option value="gemini-2.0-flash">Gemini 2.0 Flash (Newest)</option>
+      <option value="gemini-1.5-pro">Gemini 1.5 Pro (Deep Reasoning)</option>
+    </select>
+
+    <div class="switch-container">
+      <span class="switch-label">Enable Controller on Claude</span>
+      <label class="switch">
+        <input type="checkbox" id="enabledSwitch" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <button id="saveBtn" class="btn">💾 Save & Apply</button>
+    <button id="testBtn" class="btn btn-secondary">⚡ Test API Key</button>
+    <div id="statusBadge" class="status-badge"></div>
+  </div>
+
+  <div class="help-text">
+    💡 <strong>ব্যবহারের নিয়ম:</strong>
+    <br>১. এপিআই কি সেভ করার পর <strong>claude.ai</strong> সাইটে যান।
+    <br>২. সেখানে স্ক্রিনে <strong>⚡ Gemini Controller</strong> বাটন দেখতে পাবেন।
+    <br>৩. কোনো লিমিট ছাড়াই মেসেজ পাঠান, উত্তর আপনার Google Key দিয়ে জেনারেট হয়ে Claude-এ চলে আসবে!
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
